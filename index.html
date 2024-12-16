@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GB to MB Converter</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+        }
+
+        .converter {
+            background-color: #e8e8e8;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #lab2{
+            transform: translateX(15px);
+        }
+
+        button {
+            background-color: #0c6d24;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #094b1b;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .arrow {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <label>From: <input type="number" id="fromInput" placeholder="Enter value" /> gigabyte</label>
+        <div class="arrow" onclick="change()">⇅</div>
+        <label id="lab2">To: <input type="text" id="toInput" readonly /> megabyte</label>
+        <p id="result"></p>
+        <div>
+            <button onclick="clearInputs()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        const fromInput = document.getElementById('fromInput');
+        const toInput = document.getElementById('toInput');
+
+        fromInput.addEventListener('input', () => {
+            const gbValue = parseFloat(fromInput.value);
+
+            if (!isNaN(gbValue)) {
+                const mbValue = gbValue * 1024;
+                toInput.value = mbValue;
+                document.getElementById('result').innerText = `Result: ${gbValue} gigabyte = ${mbValue} megabyte`;
+            } else {
+                toInput.value = "";
+            }
+        });
+        function clearInputs() {
+            fromInput.value = "";
+            toInput.value = "";
+            document.getElementById('result').innerText = '';
+            
+        }
+    </script>
+</body>
+</html>
